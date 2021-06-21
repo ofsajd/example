@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import {DSProvider} from '@synerise/ds-core';
+import Button from '@synerise/ds-button';
+import Menu from '@synerise/ds-menu';
+import Dropdown from '@synerise/ds-dropdown';
+import message from '@synerise/ds-message';
 import './App.css';
 
 function App() {
+
+  const showMessage = () => {
+    message.success('Yeah!');
+  }
+
+  const menu = (
+    <Menu asDropdownMenu>
+      <Menu.Item onClick={showMessage}>Show Message</Menu.Item>
+      <Menu.Item>Option #2</Menu.Item>
+      <Menu.Item>Option #3</Menu.Item>
+      <Menu.Item>Option #4</Menu.Item>
+      <Menu.Item>Option #5</Menu.Item>
+    </Menu>
+  ) 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', position: 'absolute'}}>
+     <DSProvider>
+      <Dropdown overlay={menu}>
+      <Button type='primary'>Toogle</Button>
+      </Dropdown>
+     </DSProvider>
     </div>
   );
 }
